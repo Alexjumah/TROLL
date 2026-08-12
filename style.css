@@ -1,0 +1,49 @@
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+.container {
+  animation: fadeInLeft 1s ease-in-out;
+}
+.h1 {
+  color: red;
+  font-size: 24px;
+}
+.surprise {
+  font-size: 200px;
+}
+
+.surprise.button {
+  font-size: 24px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  animation: float 2s ease-in-out infinite;
+}
+.surprise.button:hover {
+  background-color: darkred;
+}
