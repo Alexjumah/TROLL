@@ -16,20 +16,32 @@ const container = document.getElementById("videoContainer");
 const video = document.getElementById("myVideo");
 let isPlaying = false;
 
+// Log if the video fails to load
+video.addEventListener("error", () => {
+  console.error("Video failed to load. Check the filename and path.");
+  alert(
+    "Error: Could not load the video. Make sure the .mp4 file is in the same folder as index.html and the filename matches exactly.",
+  );
+});
+
 btn.addEventListener("click", () => {
   if (!isPlaying) {
-    // Show and play
     container.classList.add("active");
     video.loop = true;
-    video.play();
+
+    // Try to play and catch any errors
+    video.play().catch((err) => {
+      console.error("Play error:", err);
+      alert("Video play failed: " + err.message);
+    });
+
     btn.textContent = "⏸ Hide Video";
     isPlaying = true;
   } else {
-    // Hide and pause
     container.classList.remove("active");
     video.pause();
     video.currentTime = 0;
-    btn.textContent = "▶ Play Video";
+    btn.textContent = "▶ Don't Click Me!";
     isPlaying = false;
   }
 });
