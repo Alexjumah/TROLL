@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Security Scan</title>
+    <link rel="stylesheet" href="l.css">
+</head>
+
+<body>
+    <!-- Fake scan screen -->
+    <div id="scanner">
+        <h1>System Security Scan</h1>
+        <p>Scanning your computer for threats…</p>
+        <div class="bar">
+            <div id="fill"></div>
+        </div>
+        <p id="status">0%</p>
+    </div>
+
+    <!-- Fake alert (hidden until scan "finds" viruses) -->
+    <div id="alert" class="hidden">
+        <div class="box">
+            <h2>⚠️ WARNING</h2>
+            <p id="alert-msg">4,372 viruses detected!</p>
+            <p id="alert-count"></p>
+            <button id="btn-ok">OK</button>
+            <button id="btn-fix">Fix my PC now</button>
+        </div>
+    </div>
+
+    <!-- The reveal -->
+    <div id="reveal" class="hidden">
+        <h1>Just kidding! 😄</h1>
+        <p>You've been trolled. There are no viruses.</p>
+        <button id="btn-again">Prank me again?</button>
+    </div>
+    <script src="l.js"></script>
+</body>
+
+</html>

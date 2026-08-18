@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Popup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Page content sits behind the overlay */
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            background: #1e1e2e;
+            color: #fff;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #ffd700;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #ffc400;
+        }
+
+        /* Full-screen dimmed backdrop + video on top of everything */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            /* covers the whole viewport */
+            z-index: 9999;
+            /* above all page content */
+            background: rgba(0, 0, 0, 0.85);
+            /* dark backdrop behind the video */
+            display: none;
+            /* hidden until clicked */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            position: relative;
+            max-width: 90vw;
+        }
+
+        video {
+            width: 80vw;
+            max-width: 800px;
+            display: block;
+            border-radius: 10px;
+            outline: 3px solid #ffd700;
+        }
+
+        /* Close button pinned to the top-right of the video */
+        .close {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: #ff5252;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            background: #ff1744;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Click the button…</h1>
+    <button class="btn" id="openBtn">▶ Play video</button>
+
+    <!-- Overlay: hidden by default, shown on click -->
+    <div class="overlay" id="overlay">
+        <div class="modal">
+            <!-- Replace the src with your own video file -->
+            <video id="video" src="catlaughingmeme.mp4" controls></video>
+            <button class="close" id="closeBtn" title="Close">✕</button>
+        </div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const video = document.getElementById('video');
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Open: show overlay and start playing (muted autoplay works in all browsers)
+        openBtn.addEventListener('click', () => {
+            overlay.classList.add('show');
+            video.play().catch(() => { }); // ignore autoplay-block errors
+        });
+
+        // Close: hide overlay and stop the video so it doesn't play in the background
+        function close() {
+            overlay.classList.remove('show');
+            video.pause();
+            video.currentTime = 0;
+        }
+        closeBtn.addEventListener('click', close);
+
+        // Click anywhere on the dark backdrop also closes it
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) close();
+        });
+
+        // Esc key closes too
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
+        });
+    </script>
+</body>
+
+</html>

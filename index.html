@@ -1,38 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAXIMILA</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <section class="container">
-      <h1>Welcome &#128513;</h1>
-      <h2>Click the button below for a surprise</h2>
-      <button class="surprise button" type="button" onclick="typeWriter()">
-        Click me PLEASE &#128557;
-      </button>
-      <p id="demo"></p>
-      <br />
-      <span class="surprise">&#128534;</span>
-    </section>
 
-    <section>
-      <button id="showVideoBtn">▶ Don't Click Me!</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAXIMILA</title>
+  <link rel="icon" type="image/x-icon" href="M(1).png">
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-      <div id="videoContainer">
-        <!-- 
+<body>
+  <section class="container">
+    <h1>Welcome &#128513;</h1>
+    <h2>Click the button below for a surprise</h2>
+    <button class="surprise button" type="button" onclick="typeWriter()">
+      Click me PLEASE &#128557;
+    </button>
+    <p id="demo"></p>
+    <br />
+    <span class="surprise">&#128534;</span>
+  </section>
+
+  <section>
+    <button id="showVideoBtn">▶ Don't Click Me!</button>
+
+    <div id="videoContainer">
+      <!-- 
           IMPORTANT: Make sure the src filename matches your actual file exactly.
           If your file is named cat_laughing_meme(1).mp4, use that instead.
         -->
-        <video id="myVideo" playsinline controls>
-          <source src="catlaughingmeme.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </section>
+      <video id="myVideo" playsinline controls>
+        <source src="catlaughingmeme.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
+
 </html>
