@@ -11,10 +11,10 @@
 
 <body>
   <section class="container">
-    <h1>Welcome &#128513;</h1>
-    <h2>Click the button below for a surprise</h2>
+    <h1>&#128548;</h1>
+    <h2>Whatever you do. Do NOT click this button &#128545;</h2>
     <button class="surprise button" type="button" onclick="typeWriter()">
-      Click me PLEASE &#128557;
+      DO NOT CLICK! &#128520;
     </button>
     <p id="demo"></p>
     <br />
@@ -22,21 +22,18 @@
   </section>
 
   <section>
-    <button id="showVideoBtn">▶ Don't Click Me!</button>
+    <button id="showVideoBtn">▶ Click Me!&#128527;</button>
 
-    <div id="videoContainer">
-      <!-- 
-          IMPORTANT: Make sure the src filename matches your actual file exactly.
-          If your file is named cat_laughing_meme(1).mp4, use that instead.
-        -->
-      <video id="myVideo" playsinline controls>
-        <source src="catlaughingmeme.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <!-- Overlay: hidden by default, shown on click -->
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <!-- Replace the src with your own video file -->
+        <video id="video" src="catlaughingmeme.mp4" controls></video>
+        <button class="close" id="closeBtn" title="Close">✕</button>
+      </div>
     </div>
-  </section>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

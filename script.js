@@ -11,10 +11,11 @@ function typeWriter() {
   }
 }
 
+// ---- Video popup logic (one block, matching your HTML) ----
 const btn = document.getElementById("showVideoBtn");
-const container = document.getElementById("videoContainer");
-const video = document.getElementById("myVideo");
-let isPlaying = false;
+const overlay = document.getElementById("overlay");
+const video = document.getElementById("video");
+const closeBtn = document.getElementById("closeBtn");
 
 // Log if the video fails to load
 video.addEventListener("error", () => {
@@ -25,23 +26,29 @@ video.addEventListener("error", () => {
 });
 
 btn.addEventListener("click", () => {
-  if (!isPlaying) {
-    container.classList.add("active");
-    video.loop = true;
-
-    // Try to play and catch any errors
-    video.play().catch((err) => {
-      console.error("Play error:", err);
-      alert("Video play failed: " + err.message);
-    });
-
-    btn.textContent = "⏸ Hide Video";
-    isPlaying = true;
-  } else {
-    container.classList.remove("active");
-    video.pause();
-    video.currentTime = 0;
-    btn.textContent = "▶ Don't Click Me!";
-    isPlaying = false;
+  // Toggle: if already open, close instead
+  if (overlay.classList.contains("show")) {
+    close();
+    return;
   }
+  overlay.classList.add("show");
+  video.loop = true;
+  video.play().catch((err) => console.error("Play error:", err));
+});
+
+function close() {
+  overlay.classList.remove("show");
+  video.pause();
+  video.currentTime = 0;
+}
+closeBtn.addEventListener("click", close);
+
+// Click anywhere on the dark backdrop also closes it
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) close();
+});
+
+// Esc key closes too
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") close();
 });
